@@ -89,7 +89,64 @@ h1 {
     transform: translate(86%, -50%);
 }
 
+/* Second Carousel */
+
+.carousel_container_2 {
+    width: 300px;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel_2 {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    pointer-events: none;
+}
+
+.img_2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 300px;
+    width: 300px;
+    height: 100px;
+    background-color: #FFF;
+    border-radius: 15px;
+}
+
+.buttons_2 {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: flex;
+    gap: 15px;
+}
+
+.buttons_2 button {
+    background-color: transparent;
+    color: #ccc;
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+    pointer-events: auto;
+}
+
+.buttons_2 button:hover {
+    color: rgb(36, 35, 99);
+}
+
+.buttons_2 button:first-child {
+    color: rgb(36, 35, 99);
+}
+
 /* Icones */
-.bi-hand-thumbs-up-fill {
+.bi-hand-thumbs-up-fill,
+.bi-lightbulb-fill {
     color: rgb(36, 35, 99);
 }
