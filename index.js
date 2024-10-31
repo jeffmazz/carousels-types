@@ -6,11 +6,11 @@ const nextBtn = document.querySelector('#next_image_button_1')
 
 // function on load to carousel start with the correct value
 window.addEventListener('load', () => {
-    carousel.scrollBy({top:0, left:590, behavior:'instant'})
+    carousel.scrollBy({top:0, left:(imageWidth*2), behavior:'instant'})
 })
 
 // image width + gap
-const imageWidth = document.querySelector('.img').scrollWidth + 10
+const imageWidth = document.querySelector('.img').offsetWidth + 10
 
 // functions to show next and previous images
 const nextImage = () => {
@@ -36,7 +36,7 @@ const enableButtons = () => {
 // buttons on click
 prevBtn.addEventListener("click", () => {
 
-    if(carousel.scrollLeft == 0) carousel.scrollBy({top: 0, left: 1770, behavior: 'instant'})
+    if(carousel.scrollLeft == 0) carousel.scrollBy({top: 0, left: (imageWidth*6), behavior: 'instant'})
     
     disableButtons()
     prevImage()
@@ -44,7 +44,7 @@ prevBtn.addEventListener("click", () => {
 })
 nextBtn.addEventListener('click', () => {
 
-    if(carousel.scrollLeft == 2065) carousel.scrollBy({top: 0, left: -1770, behavior: 'instant'})
+    if(carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth) carousel.scrollBy({top: 0, left: -1770, behavior: 'instant'})
 
     disableButtons()
     nextImage()
@@ -99,3 +99,62 @@ for(let index = 0; index <= 3; index ++) {
     })
 
 }
+
+// Carousel 3
+
+const carousel_3 = document.querySelector(".carousel_3")
+
+let isDragging = false
+let startX
+
+const valueToScroll_3 = document.querySelector('.img_3').offsetWidth + 10
+
+window.addEventListener('load', () => {
+    carousel_3.scrollBy({top: 0, left: valueToScroll_3, behavior:'instant'})
+})
+
+carousel_3.addEventListener('mousedown', (e) => {
+    isDragging = true
+    startX = e.pageX
+})
+
+const showPreviewImage = () => {
+
+    if(carousel_3.scrollLeft === 0) {
+        carousel_3.scrollBy({top:0, left:valueToScroll_3*4, behavior:'instant'})
+    }
+
+    carousel_3.scrollBy({top:0, left:-valueToScroll_3, behavior:'smooth'})
+    disableAndEnableCarouselEvent()
+}
+const showNextImage = () => {
+
+    if(carousel_3.scrollLeft + carousel_3.clientWidth >= carousel_3.scrollWidth) {
+        carousel_3.scrollBy({top: 0, left:-valueToScroll_3*4, behavior:'instant'})
+    }
+
+    carousel_3.scrollBy({top:0, left:valueToScroll_3, behavior:'smooth'})
+    disableAndEnableCarouselEvent()
+}
+
+const disableAndEnableCarouselEvent = () => {
+    carousel_3.style.pointerEvents = 'none'
+    setTimeout(() => {
+        carousel_3.style.pointerEvents = 'auto'
+    }, 500)
+}
+
+carousel_3.addEventListener('mouseup', (e) => {
+    if(!isDragging) return
+    isDragging = false
+
+    const endX = e.pageX
+
+    if(startX < endX) {
+        showPreviewImage()
+    }
+    if(startX > endX) {
+        showNextImage()
+    }
+
+})

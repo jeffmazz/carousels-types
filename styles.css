@@ -145,8 +145,40 @@ h1 {
     color: rgb(36, 35, 99);
 }
 
+/* Third Carousel */
+
+.carousel_container_3 {
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel_3 {
+    background-color: #FFF;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.img_3 {
+    flex: 0 0 400px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
 /* Icones */
-.bi-hand-thumbs-up-fill,
-.bi-lightbulb-fill {
+.bi-hand-thumbs-up-fill {
     color: rgb(36, 35, 99);
+}
+
+.bi-lightbulb-fill {
+    color: yellow;
 }
