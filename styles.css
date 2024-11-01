@@ -15,7 +15,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    gap: 10px;
+    gap: 50px;
 }
 
 h1 {
@@ -23,17 +23,13 @@ h1 {
 }
 
 .carousel_container_1 {
-    background-color: transparent;
-    border-radius: 10px;
-    padding: 5px 10px;
     position: relative;
-    width: 600px;
+    width: 50%;
 }
 
 .carousel_1 {
     display: flex;
-    align-items: center;
-    gap: 10px;
+    gap: 4%;
     width: 100%;
     overflow-x: auto;
     scrollbar-width: none;
@@ -46,12 +42,10 @@ h1 {
 }
 
 .img {
-    flex: 0 0 285px;
+    flex: 0 0 48%;
     height: 100px;
-    width: 285px;
     background-color: #FFF;
-    border-radius: 10px;
-    margin: 0 auto;
+    border-radius: 20px;
 
     display: flex;
     align-items: center;
@@ -71,7 +65,7 @@ h1 {
     opacity: 0;
     transition: opacity 0.5s ease;
     cursor: pointer;
-    transition: .3s;
+    transition: .5s;
 }
 
 #previous_image_button_1:hover,
@@ -82,11 +76,11 @@ h1 {
 
 #previous_image_button_1 {
     left: 0;
-    transform: translate(-85%, -50%);
+    transform: translate(-120%, -50%);
 }
 #next_image_button_1 {
     right: 0;
-    transform: translate(86%, -50%);
+    transform: translate(120%, -50%);
 }
 
 /* Second Carousel */

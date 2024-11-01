@@ -1,23 +1,54 @@
 // Carousel 1
 
-const carousel = document.querySelector(".carousel_1")
+const carousel_1 = document.querySelector(".carousel_1")
 const prevBtn = document.querySelector("#previous_image_button_1")
 const nextBtn = document.querySelector('#next_image_button_1')
 
+// Constants to get width values
+let imgWidth_1 = document.querySelector('.img').offsetWidth
+let gap_1 = ((imgWidth_1*2) / 96) * 8
+let valueToScroll_1 = (imgWidth_1*2) + gap_1
+
 // function on load to carousel start with the correct value
 window.addEventListener('load', () => {
-    carousel.scrollBy({top:0, left:(imageWidth*2), behavior:'instant'})
+    carousel_1.scrollBy({top:0, left:valueToScroll_1, behavior:'instant'})
 })
 
-// image width + gap
-const imageWidth = document.querySelector('.img').offsetWidth + 10
+// function on resize to adjust the constants that take the width values
+window.addEventListener('resize', () => {
+    carousel_1.scrollBy({top:0, left:-1000, behavior:'instant'})
+    imgWidth_1 = document.querySelector('.img').offsetWidth
+    gap_1 = ((imgWidth_1*2) / 96) * 8
+    valueToScroll_1 = (imgWidth_1*2) + gap_1
+    carousel_1.scrollBy({top:0, left: valueToScroll_1, behavior:'instant'})
+})
 
 // functions to show next and previous images
 const nextImage = () => {
-    carousel.scrollBy({top: 0, left:imageWidth, behavior:"smooth"})
+
+    if(Math.ceil(carousel_1.clientWidth + carousel_1.scrollLeft) >= carousel_1.scrollWidth) {
+        carousel_1.scrollBy({top: 0, left: -valueToScroll_1*3, behavior:'instant'})
+    }
+
+    if(Math.ceil(carousel_1.scrollLeft + valueToScroll_1*1.99) >= carousel_1.scrollWidth) {
+        carousel_1.scrollBy({top:0, left:10000, behavior:'smooth'})
+        return
+    }
+
+    carousel_1.scrollBy({top: 0, left:valueToScroll_1, behavior:"smooth"})
 }
 const prevImage = () => {
-    carousel.scrollBy({top: 0, left:-imageWidth, behavior:"smooth"})
+
+    if(carousel_1.scrollLeft === 0) {
+        carousel_1.scrollBy({top:0, left:valueToScroll_1*3, behavior:'instant'})
+    }
+
+    if(carousel_1.scrollLeft - valueToScroll_1*1.99 <= 0) {
+        carousel_1.scrollBy({top: 0, left:-10000, behavior:"smooth"})
+        return
+    }
+
+    carousel_1.scrollBy({top: 0, left:-valueToScroll_1, behavior:"smooth"})
 }
 
 // function to disable buttons and avoid multiple clicks
@@ -35,17 +66,12 @@ const enableButtons = () => {
 
 // buttons on click
 prevBtn.addEventListener("click", () => {
-
-    if(carousel.scrollLeft == 0) carousel.scrollBy({top: 0, left: (imageWidth*6), behavior: 'instant'})
     
     disableButtons()
     prevImage()
     enableButtons()
 })
 nextBtn.addEventListener('click', () => {
-
-    if(carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth) carousel.scrollBy({top: 0, left: -1770, behavior: 'instant'})
-
     disableButtons()
     nextImage()
     enableButtons()
