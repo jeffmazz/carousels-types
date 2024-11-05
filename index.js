@@ -82,7 +82,7 @@ nextBtn.addEventListener('click', () => {
 const carousel_2 = document.querySelector('.carousel_2')
 const buttons2 = Array.from(document.querySelectorAll('.buttons_2')[0].children)
 
-const imageWidth2 = document.querySelector('.img_2').scrollWidth + 10 // scrollWidth = element width | 10 = gap
+const valueToScroll_2 = document.querySelector('.img_2').offsetWidth + 10 // scrollWidth = element width | 10 = gap
 
 // function to disable buttons and avoid multiple clicks
 const disableButtons2 = () => {
@@ -91,7 +91,7 @@ const disableButtons2 = () => {
     })
 }
 // function to enable click buttons
-const ableButtons2 = () => {
+const enableButtons2 = () => {
     setInterval(() => {
         buttons2.forEach(button => {
             button.disabled = false
@@ -106,7 +106,7 @@ for(let index = 0; index <= 3; index ++) {
 
         buttons2.map(button => {
             if(button === buttons2[index]) {
-                button.style.color = "rgb(36, 35, 99)"
+                button.style.color = "rgb(255, 255, 100)"
             } else {
                 button.style.color = "#ccc"
             }
@@ -116,11 +116,11 @@ for(let index = 0; index <= 3; index ++) {
 
         carousel_2.scrollTo({
             top:0,
-            left: imageWidth2 * index,
+            left: valueToScroll_2 * index,
             behavior: 'smooth'
         })
 
-        ableButtons2()
+        enableButtons2()
 
     })
 
