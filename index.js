@@ -129,6 +129,7 @@ for(let index = 0; index <= 3; index ++) {
 // Carousel 3
 
 const carousel_3 = document.querySelector(".carousel_3")
+const carousel_3_overlay = document.getElementById("carousel_3_overlay")
 
 let isDragging = false
 let startX
@@ -140,35 +141,10 @@ window.addEventListener('load', () => {
 })
 
 carousel_3.addEventListener('mousedown', (e) => {
+    if(e.button === 1) e.preventDefault() // 0: lado esquerdo do mouse. 1: meio do mouse. 2> lado direito do mouse
     isDragging = true
     startX = e.pageX
 })
-
-const showPreviewImage = () => {
-
-    if(carousel_3.scrollLeft === 0) {
-        carousel_3.scrollBy({top:0, left:valueToScroll_3*4, behavior:'instant'})
-    }
-
-    carousel_3.scrollBy({top:0, left:-valueToScroll_3, behavior:'smooth'})
-    disableAndEnableCarouselEvent()
-}
-const showNextImage = () => {
-
-    if(carousel_3.scrollLeft + carousel_3.clientWidth >= carousel_3.scrollWidth) {
-        carousel_3.scrollBy({top: 0, left:-valueToScroll_3*4, behavior:'instant'})
-    }
-
-    carousel_3.scrollBy({top:0, left:valueToScroll_3, behavior:'smooth'})
-    disableAndEnableCarouselEvent()
-}
-
-const disableAndEnableCarouselEvent = () => {
-    carousel_3.style.pointerEvents = 'none'
-    setTimeout(() => {
-        carousel_3.style.pointerEvents = 'auto'
-    }, 500)
-}
 
 carousel_3.addEventListener('mouseup', (e) => {
     if(!isDragging) return
@@ -182,5 +158,32 @@ carousel_3.addEventListener('mouseup', (e) => {
     if(startX > endX) {
         showNextImage()
     }
-
 })
+
+const disableAndEnableCarouselEvent = () => {
+    carousel_3_overlay.style.zIndex = 10
+    setTimeout(() => {
+        carousel_3_overlay.style.zIndex = -1
+    }, 200)
+}
+
+const showPreviewImage = () => {
+
+    disableAndEnableCarouselEvent()
+
+    if(carousel_3.scrollLeft === 0) {
+        carousel_3.scrollBy({top:0, left:valueToScroll_3*4, behavior:'instant'})
+    }
+
+    carousel_3.scrollBy({top:0, left:-valueToScroll_3, behavior:'smooth'})
+}
+const showNextImage = () => {
+
+    disableAndEnableCarouselEvent()
+
+    if(carousel_3.scrollLeft + carousel_3.clientWidth >= carousel_3.scrollWidth) {
+        carousel_3.scrollBy({top: 0, left:-valueToScroll_3*4, behavior:'instant'})
+    }
+
+    carousel_3.scrollBy({top:0, left:valueToScroll_3, behavior:'smooth'})
+}

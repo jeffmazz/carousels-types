@@ -153,6 +153,7 @@ h1 {
     scrollbar-width: none;
     border-radius: 20px;
     cursor: pointer;
+    z-index: 1;
 }
 
 .img_3 {
@@ -164,11 +165,28 @@ h1 {
     gap: 10px;
 }
 
+#carousel_3_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    z-index: -1;
+}
+
 /* Icones */
 .bi-hand-thumbs-up-fill {
     color: rgb(36, 35, 99);
+    font-size: 16pt;
 }
 
 .bi-lightbulb-fill {
     color: yellow;
+    font-size: 16pt;
+}
+
+.bi-suit-heart-fill {
+    color: red;
+    font-size: 16pt;
 }
