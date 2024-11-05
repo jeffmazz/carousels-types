@@ -30,7 +30,7 @@ const nextImage = () => {
         carousel_1.scrollBy({top: 0, left: -valueToScroll_1*3, behavior:'instant'})
     }
 
-    if(Math.ceil(carousel_1.scrollLeft + valueToScroll_1*1.99) >= carousel_1.scrollWidth) {
+    if(Math.ceil(carousel_1.scrollLeft + carousel_1.clientWidth + valueToScroll_1*1.3) >= carousel_1.scrollWidth) {
         carousel_1.scrollBy({top:0, left:10000, behavior:'smooth'})
         return
     }
